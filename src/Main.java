@@ -6,7 +6,10 @@ public class Main {
         field.fillField();
         field.outField();
         System.out.println(field.cellArray[13][9].getChecker().getColor());
-        field.cellArray[13][9].moveCheckerUpRight(field);
+
+        System.out.println(field.cellArray[11][5].getChecker().getColor());
+        field.cellArray[13][9].moveChecker(true, true, true, field);
+        field.cellArray[11][5].moveChecker(false, true, true, field);
         field.outField();
     }
 }

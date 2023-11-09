@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
@@ -12,21 +11,8 @@ public class Field {
         this.amountOfPlayers = amountOfPlayers;
     }
 
-    public void fillFieldFor2Players() {
-        cellArray[0][12] = new Cell(new Checker(Colors.RED, 12, 0));
-        cellArray[1][11] = new Cell(new Checker(Colors.RED, 11, 1));
-        cellArray[1][13] = new Cell(new Checker(Colors.RED, 13, 1));
-        cellArray[2][10] = new Cell(new Checker(Colors.RED, 10, 2));
-        cellArray[2][12] = new Cell(new Checker(Colors.RED, 12, 2));
-        cellArray[2][14] = new Cell(new Checker(Colors.RED, 14, 2));
-        cellArray[3][9] = new Cell(new Checker(Colors.RED, 9, 3));
-        cellArray[3][11] = new Cell(new Checker(Colors.RED, 11, 3));
-        cellArray[3][13] = new Cell(new Checker(Colors.RED, 13, 3));
-        cellArray[3][15] = new Cell(new Checker(Colors.RED, 15, 3));
-    }
-
     public void fillField() throws IOException {
-        fileReader = new FileReader("E:\\VSU\\ChineseCheckers\\src\\task2.txt");
+        fileReader = new FileReader("/Users/vladimirkattsyn/IdeaProjects/ChineseCheckers/src/task2.txt");
         Scanner scanner = new Scanner(fileReader);
         int i = -1;
         String line;
@@ -68,13 +54,13 @@ public class Field {
     }
 
     public void outField() {
-        for (int i = 0; i < cellArray.length; i++) {
+        for (Cell[] cells : cellArray) {
             for (int j = 0; j < cellArray[0].length; j++) {
-                if (cellArray[i][j] == null) {
+                if (cells[j] == null) {
                     System.out.print(" ");
-                } else if (cellArray[i][j].canBeVisited()) {
+                } else if (cells[j].canBeVisited()) {
                     System.out.print("1");
-                } else switch (cellArray[i][j].getChecker().getColor()) {
+                } else switch (cells[j].getChecker().getColor()) {
                     case RED -> System.out.print("2");
                     case BLUE -> System.out.print("3");
                     case PINK -> System.out.print("7");
